@@ -1,4 +1,4 @@
 {
-    "connectionString": "mongodb://localhost/mean-stack-backend",
-    "secret": "$super%secret$"
+  "connectionString": "mongodb://localhost/mean-stack-backend",
+  "secret": "TRLvlmA5b8khQxKIqyRXQBZnjndUXEbj"
 }
