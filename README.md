@@ -12,11 +12,11 @@ Start the api by running `npm start` from the command line in the project root f
 
 # feautures
 
-Using API route `'/user/register'` to register new user.
+Using API route `'/account/register'` to register new user.
 
-Using API route `'/user/login'` to login on admin panel.
+Using API route `'/account/login'` to login on admin panel.
 
-Using API route `'/user'` to  create, update, delete user.
+Using API route `'/user'` to  create, update, delete user. You need to be logged in on the client side. JWT token required for this route.
 
 Using API route `'/contact'` to send POST request with customer email.
 
