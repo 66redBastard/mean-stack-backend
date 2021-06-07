@@ -9,9 +9,8 @@ const nodemailer = require("nodemailer");
 const GMAIL_USER = process.env.GMAIL_USER;
 const GMAIL_PASS = process.env.GMAIL_PASS;
 
-// app.use(bodyParser.json());
 app.use(cors());
-app.use(express.json()); //Used to parse JSON bodies
+app.use(express.json()); //Used to parse JSON bodies. Body parser is deprecated
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
 // use JWT auth to secure the api
@@ -24,7 +23,6 @@ app.use(errorHandler);
 app.use("/users", require("./users/users.controller"));
 
 app.post("/contact", (req, res) => {
-  // Instantiate the SMTP server
   const smtpTrans = nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,
@@ -32,16 +30,8 @@ app.post("/contact", (req, res) => {
       user: GMAIL_USER,
       pass: GMAIL_PASS,
     },
-    //   host: 'smtp.gmail.com',
-    //   port: 465,
-    //   secure: true,
-    //   auth: {
-    //     user: GMAIL_USER,
-    //     pass: GMAIL_PASS
-    //   }
   });
 
-  // Specify what the email will look like
   const mailOpts = {
     from: "Your sender info here", // This is ignored by mail agent
     to: GMAIL_USER,
@@ -49,19 +39,15 @@ app.post("/contact", (req, res) => {
     text: `user contact email: ${req.body.email}`,
   };
 
-  // Attempt to send the email
   smtpTrans.sendMail(mailOpts, (error, response) => {
     if (error) {
       console.log(error);
-      res.render("contact-failure"); // Show a page indicating failure
     } else {
-      console.log(req.body.email);
-      res.render("contact-success"); // Show a page indicating success
+      res.json({ status: 200, data: req.body.email });
     }
   });
 });
 
-// start server
 const port =
   process.env.NODE_ENV === "production" ? process.env.PORT || 80 : 4000;
 const server = app.listen(port, function () {
