@@ -1,4 +1,13 @@
 {
   "connectionString": "mongodb://localhost/mean-stack-backend",
-  "secret": "TRLvlmA5b8khQxKIqyRXQBZnjndUXEbj"
+  "secret": "TRLvlmA5b8khQxKIqyRXQBZnjndUXEbj",
+  "emailFrom": "info@node-back.com",
+  "smtpOptions": {
+    "host": "smtp.ethereal.email",
+    "port": 587,
+    "auth": {
+      "user": "nolan.collier@ethereal.email",
+      "pass": "GjE4rpf1Btu8mthtzc"
+    }
+  }
 }
